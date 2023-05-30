@@ -1,0 +1,27 @@
+{
+  "name": "graphql_lab_initial_1",
+  "version": "1.0.0",
+  "description": "GraphQL Lab",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts --exec ts-node src/index.ts -e ts,graphql"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/express-graphql": "^0.9.0",
+    "@types/node": "^20.2.5",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "apollo-server-express": "^3.12.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "graphql": "^15.8.0",
+    "graphql-import-node": "^0.0.5",
+    "graphql-tools": "^9.0.0",
+    "ncp": "^2.0.0"
+  }
+}
