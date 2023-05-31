@@ -1,0 +1,12 @@
+type Query {
+  getPeople: [People],
+}
+
+type People {
+  id: ID!
+  name: String!
+  dateOfBirth: String!
+  address: String!
+  email: String!
+}
+
