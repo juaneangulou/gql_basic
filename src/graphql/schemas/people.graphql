@@ -1,5 +1,7 @@
 type Query {
   getPeople: [People],
+  getPersonByName(name: String!): [People]
+
 }
 
 type People {
@@ -10,3 +12,21 @@ type People {
   email: String!
 }
 
+type Mutation {
+  createPerson(input: PersonInput!): People
+}
+
+input PersonInput {
+  name: String!
+  dateOfBirth: String!
+  address: String!
+  email: String!
+}
+
+type Mutation {
+  updatePerson(id: ID!, input: PersonInput!): People
+}
+
+type Mutation {
+  deletePerson(id: ID!): Boolean
+}
