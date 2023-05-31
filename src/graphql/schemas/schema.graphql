@@ -1,3 +1,13 @@
 type Query{
-     hello: String
+    hello: String!,
+    getCartoons: [Cartoon]
+}
+
+type Cartoon {
+  id: ID!
+  name: String!
+  city: String!
+  country: String!
+  dateOfBirth: String!
+  yearOfCreation: Int!
 }
