@@ -4,7 +4,8 @@
   "description": "GraphQL Lab",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts --exec ts-node src/index.ts -e ts,graphql"
+    "dev": "nodemon src/index.ts --exec ts-node src/index.ts -e ts,graphql",
+    "start": "nodemon src/index.ts --exec ts-node src/index.ts -e ts,graphql"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
