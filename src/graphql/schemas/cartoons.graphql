@@ -11,3 +11,4 @@ type Cartoon {
   dateOfBirth: String!
   yearOfCreation: Int!
 }
+
