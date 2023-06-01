@@ -14,10 +14,24 @@ const peopleResolver: IResolvers = {
             return 'Person created';
         },
         updatePerson: (parent, args, context) => {
-            const {_id, input} = args;
-            console.log(args);
-            console.log(_id, input);
+            const { _id, input } = args;
+            const personIndex = PeopleDataSource.findIndex((person) => person._id === _id);
+            if (personIndex === -1) throw new Error('Person not found');
+
+            const updatedPerson = {
+                _id,
+                ...input
+            };
+            PeopleDataSource[personIndex] = updatedPerson;
             return 'Person updated';
+        },
+        deletePerson: (parent, args, context) => {
+            const { _id, input } = args;
+            const personIndex = PeopleDataSource.findIndex((person) => person._id === _id);
+            if (personIndex === -1) throw new Error('Person not found');
+
+            PeopleDataSource.splice(personIndex, 1);
+            return 'Person removed';
         }
     }
 }

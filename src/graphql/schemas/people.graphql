@@ -19,7 +19,8 @@ input NewPerson{
 
 type Mutation{
   createPerson(input: NewPerson): String!
-  updatePerson(_id: ID!, input: EditPerson): String!
+  updatePerson(_id: ID!, input: EditPerson): String
+  deletePerson(_id: ID!): String
 }
 
 input EditPerson{
@@ -28,3 +29,4 @@ input EditPerson{
   address: String,
   email: String! 
 }
+
