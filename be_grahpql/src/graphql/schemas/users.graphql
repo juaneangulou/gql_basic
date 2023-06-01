@@ -1,0 +1,34 @@
+type User{
+    _id: ID!
+    name: String!
+    email: String!
+    createdAt: String
+    updatedAt: String
+}
+
+type Query{
+    getUser: [User!]!    
+    getUserById(_id:ID): User
+    getCurrentUser(token:String): User
+}
+
+input  UserInput{
+    name: String!
+    email: String!
+    password: String!
+}
+
+type Token{
+    token: String!
+}
+
+input AuthInput{
+    email: String!
+    password: String!
+}
+
+type Mutation{
+    createUser(userInput: UserInput): String
+    updateUser(_id:ID, userInput: UserInput): String
+    authUser(authInput: AuthInput): Token
+}
