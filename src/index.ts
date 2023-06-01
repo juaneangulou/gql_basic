@@ -3,7 +3,7 @@ import cors from "cors";
 import { ApolloServer } from "apollo-server-express";
 import { schema } from "./graphql";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core"
-
+import MongoLib from "./mongo";
 const app = express()
 app.use(cors())
 const server = new ApolloServer({
@@ -11,7 +11,8 @@ const server = new ApolloServer({
     introspection: true,
     plugins: [
         ApolloServerPluginLandingPageGraphQLPlayground()
-    ]
+    ],
+    context: async () => new MongoLib().connect()
 })
 
 

@@ -4,7 +4,7 @@ type Query{
 }
 
 type Cartoon {
-  id: ID!
+  _id: ID!
   name: String!
   city: String!
   country: String!
