@@ -1,0 +1,74 @@
+
+//Enviar data a actualizart sin Query variables:
+mutation {
+  updatePerson(
+    _id: "2"
+    input: {
+      name: "John Doe Jr."
+      dateOfBirth: "1990-01-01"
+      address: "123 Main St"
+      email: "john.doe@example.com"
+    }
+  )
+}
+
+
+-----------------------------------------------------
+# Write your query or mutation here
+{
+  getCartoons{id}
+  getPeople{
+    _id
+    name
+    dateOfBirth
+    address
+  }
+}
+
+--------------------------------------------------------
+body:
+
+mutation Newperson ($person:NewPerson){
+  createPerson(input:$person)
+}
+
+varaibles:
+{
+  "person": {
+    "name": "Luis Rivas",
+    "dateOfBirth": "1988-05-25",
+    "email": "luis@myemail.com"    
+  }
+}
+-----------------------------------------------------------
+
+body:
+
+mutation UpdatePerson($id:ID!, $input:EditPerson! ){
+  updatePerson(_id:$id, input: $input)
+}
+
+varaibles:
+{
+	"id": "2",
+  "input": {
+     "name": "Ann Smith",
+    "dateOfBirth": "1988-05-25",
+    "email": "ana@myemail.com",
+    "address": "St evergreen 125"
+    
+  }
+}
+-----------------------------------------------------------
+
+
+body:
+
+mutation DeletePerson($id: ID!){
+  deletePerson(_id:$id)
+}
+
+{
+  "id": "3"
+}
+-----------------------------------------------------------
