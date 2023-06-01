@@ -10,27 +10,33 @@ const employeeResolver: IResolvers = {
             } catch (error) {
                 console.log(error);
             }
-        }       
+        }
     },
     Mutation: {
         createEmployee: async (parent, args, context: Db) => {
             try {
-              await context.collection('employees').insertOne(args.employee);
-              return "Employee created successfully";
+                const reg_ex = new RegExp(args?.employee?.name, 'i');
+                const employeeColl = await context.collection('employees').findOne({ name: reg_ex });
+                console.log(employeeColl);
+                if (employeeColl) throw new Error("Employee already exists");
+
+                await context.collection('employees').insertOne(args.employee);
+                return "Employee created successfully";
             } catch (error) {
-              console.log(error);
+                console.log(error);
+                return error;
             }
         },
         updateEmployee: async (parent, args, context: Db) => {
             try {
-                const {  input } = args;
-                const employeeColl= await context.collection('employees').findOne({ _id: new ObjectId(args._id) });
-                if(!employeeColl) throw new Error("Employee not found");
-                
+                const { input } = args;
+                const employeeColl = await context.collection('employees').findOne({ _id: new ObjectId(args._id) });
+                if (!employeeColl) throw new Error("Employee not found");
+
                 await context.collection('employees').updateOne(
                     { _id: new ObjectId(args._id) },
                     { $set: args.employee }
-                  );
+                );
 
                 return "Employee updated successfully";
             } catch (error) {
@@ -58,13 +64,13 @@ const employeeResolver: IResolvers = {
         //     throw new Error("Person not found");
         // }
     },
-    Employee:{
-        async skills(parent, args, context: Db){
+    Employee: {
+        async skills(parent, args, context: Db) {
             try {
-                const skillsList= parent.skills.map(async (id: String) => {
+                const skillsList = parent.skills.map(async (id: String) => {
                     return await context.collection('Skills').findOne({ _id: new ObjectId(id.toString()) });
                 });
-                return skillsList;  
+                return skillsList;
 
             } catch (error) {
                 console.log(error);
