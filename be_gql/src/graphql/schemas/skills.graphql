@@ -1,0 +1,18 @@
+type Skill{
+    _id: ID!
+    name: String!
+    
+}
+
+type Query{
+    getSkills: [Skill]
+
+}
+
+input SkillInput{
+    name: String!
+}
+
+type Mutation{
+    createSkill(skillInput: SkillInput): String!
+}
